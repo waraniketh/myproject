@@ -1,0 +1,86 @@
+{"Age": 73,"Education": " High school graduate","MaritalStatus": " Widowed","Gender": " Female","TaxFilerStthis pension is for status": " Nonfiler","Income":  1700.09,"Parents": " Not in universe","CountryOfBirth": " United-States","Citizenship": " Native- Born in the United States","WeeksWorked":  0}
+(age int,eductaion string,martialstatus string,taxfilerstatus string,income bigint,parents string,countryofbirth string,citizenship string,weekworked int)
+
+queries to write:
+1)if we want to provide health benefits for only us citizens who are eligible?
+   1)this is only for
+    
+2)find out the people who are well educated but not a taxfiler?
+3)find out every male taxfiler who is married?
+4)
+lic  policies.
+1)we want to provide extra benefits like health,pension to citizens from government?
+so persons qualifying this pension are 
+1)firstly this pension is only for persons having income greater 1500
+2.)if non maried then it cost 80 and if maried 150 for both.(for working)
+3.)if non married then it cost 100 and if maried 170 for both(for non working).
+4.)if widowed then it cost 50 for working and non working it cost 70. 
+5.)if not a citizn of USA then have to pay 2% extra.
+6.)if taxfiler status is filer then 2% discount.
+7.)if age is inbetween 1 and 18 then it cost 40$.
+
+second use case regarding immigration purpose
+
+1.)seggregate us citizen from foreigner see whose average income is greater and dispaly group wise.
+2.) different country and different citizenship who are not working but have income are they orphans
+3.)how many countries people  have migrated from and are they working or not if working find the age group which has maximum income.
+4.)different country but a us citizen is he a tax filer /is he married /or is he studying or which age group is he from.
+6.)finding  different cob but married to us citizen is he working and does he have parents if working find the person who satisfies all conditions who has maximum income.
+7.)finding the education of a person from different country and not a us citizen and find their working hours if working find out top 5 persons with most working hours take average of their income and then take foreigners with top highest income who donot work and take their average income see whose is greater.
+
+third use case finding divorce person
+1.)find people who are educated and divorced.
+2.)income of the divorced people.
+3.)non educated and divorced.
+4.)age group of divorced people.
+5.)calculate the age of person who got divorced least and highest age.
+6.)finding the parents of divorced people.
+7.)divorce from different citizen.
+/*fourth use case 
+1.)taxfiler who is educated and divorced?find his income?
+2.)caluculate the people who are about to get graduted and whose income is low?display no.of weeks he is working we can know if we can employ him for low wages
+3.)caluculate citizens with highest income are taxfilers or not?
+4.)which gender is highly educated display group wise according to age see if this class is working more or the other class?
+5.)find out the income of two people such that one should be working and one should be non working and their incomes should be highest in their class
+6.)calucluate same for the lowest?see which one is a taxfiler?and if we implement our plan of first use case then see how much will he be left with?
+7.)after dividing the people in working and non working class caluculate average income of them before and after implementing our plan see which class income is higher and what percentage is their contribution to total income?
+8.)so if we take into account the income earned by a company from the money they pay for benefits caluculate the income of the company 
+such that it should be the least the company earns by concidering factors like age,job security,martial status,etc?
+*/
+fourth use case report to govt about various situations to implement various schemes 
+1.)check which age group is educated the most caluculate the average income of those and see if their income is highest or average income of people who are least educated  find the differnce %?(take into account immigrants and non-immigrants separately)?eliminating childern?
+2.)find out the person with most weeks working chehck if his income is highest if his income is not highest then take average of top 5 income people and then find the difference  is least print his education status(take into account for both persons who is working or non -working) and then find the diff of average of top 5 income people  and do it for both native and non immigrants?
+4.)count the no.of orphans see which age group has more orphans eliminating the age group greater than 45 find out if they are working or not if working then find out average income and also find the average income of non-working?check their education status?
+5.)find out natives who are taxfilers and find out if they are married or not if married are they filing tax for both or separately see which persons pay more tax married or not married(find average)?check whether the persons who are more eductaed are taxfilers or persons who are uneductaed that is least educated and they should be working ?then see tax filers work more or non taxfilers?
+6.)see if there are any orphans (consider both genders separately) with low income and marreid and caluculate how many persons are of age group between 18-35 yrs?caluculate what percent of the total population are orphans? 
+7.)see if the average income of divorced is greater than the people with married (take educated and uneducated class separately)?then separate them based on parents separately then?caluculate the difference of their income from top 5 income average?
+8.)caluculate the male percentage and female percentage firstly based on age group secondly based on eductaion then percentage on weeksworked for litracy rate?(take immigrants and non-immigrants separately)?
+9.)which gender earns the most male or female group it by age?what is their educationstatus and how many weeks are they working?then find the difference of their average income?then again find how which gender tops it group wise then find which age group difference is higher and if difference is high does it belong to gender that tops or other then what is its percent on the income difference obtained?
+10)caluculate what percent of total population are  old people and see if their ioncome is well enough to survive if they have spouse see people of thst category are earning more?
+
+Doctorate degree(PhD EdD),Prof school degree (MD DDS DVM LLB JD)
+
+fifith use case literacy rate of us
+1.)see which gender is most educated for each age group and what is their income and how many weeks are they able to work
+2.)see which age group is most educated and dispaly the age group with highest eduction(no.of people h) eliminate the senior citizens
+
+sixth use case 
+
+insert overwrite table census_csv select get_json_object(jsondata,"$.Age"),get_json_object(jsondata,"$.Education"),get_json_object(jsondata,"$.MaritalStatus"),get_json_object(jsondata,"$.Gender"),get_json_object(jsondata,"$.TaxFilerStatus"),get_json_object(jsondata,"$.Income"),get_json_object(jsondata,"$.Parents"),get_json_object(jsondata,"$.CountryOfBirth"),get_json_object(jsondata,"$.Citizenship"),get_json_object(jsondata,"$.WeeksWorked") from demo;
+
+select * from (select avg(income) as average from census_csv where age=0) as b,(select sum(income) as summofincome from census_csv where age=90) as c,(select max(income) from census_csv where age=90) as d;
+
+
+drop database myproject;
+create database myproject;
+use myproject;
+create table word(killed string) stored as textfile;
+load data inpath '/myproject/census_records' overwrite into table word;
+create table censusdata(age int,education string,maritalstatus string,gender string,taxfilerstatus string,income double
+,parents string,countryofbirth string,citizenship string,weeksworked int) stored as textfile;
+insert overwrite table censusdata select (trim(get_json_object(killed,"$.Age"))),(trim(get_json_object(killed,"$.Education"))),
+(trim(get_json_object(killed,"$.MaritalStatus"))),(trim(get_json_object(killed,"$.Gender"))),(trim(get_json_object(killed,"$.TaxFilerStatus"))),
+(trim(get_json_object(killed,"$.Income"))),(trim(get_json_object(killed,"$.Parents"))),(trim(get_json_object(killed,"$.CountryOfBirth"))),
+(trim(get_json_object(killed,"$.Citizenship"))),(trim(get_json_object(killed,"$.WeeksWorked")))from word;
+	
+df -T to check which filesystem are we using

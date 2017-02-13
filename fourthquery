@@ -1,0 +1,17 @@
+use myproject5;
+select taxfilerstatus from censusdata group by taxfilerstatus;
+//caluculating number of taxfilers from given data
+select count(taxfilerstatus),taxfilerstatus,round(avg(income),2) from censusdata where taxfilerstatus!='Nonfiler' group by taxfilerstatus;
+//findingout out the average income of tax nonfilers and taxfilers and caluculating the difference between them
+create view filersaverage as select round(avg(income),2) as averageoffilers from censusdata where taxfilerstatus!='Nonfiler';
+create view nonfliersaverage as select round(avg(income),2) as averageofnonfilers from censusdata where taxfilerstatus='Nonfiler';
+select (averageoffilers-averageofnonfilers)*100/averageofnonfilers from filersaverage,nonfliersaverage; 
+//findingout out people with marital status as married and filing tax as only single 
+select count(taxfilerstatus),taxfilerstatus from censusdata where (taxfilerstatus!='Nonfiler' and  taxfilerstatus='Single') and (maritalstatus='Married-A F spouse present' or maritalstatus='Married-civilian spouse present')group by taxfilerstatus;
+//finding the weeksworked by those people who are single and married and file tax as single
+select count(taxfilerstatus),taxfilerstatus,weeksworked from censusdata where (taxfilerstatus!='Nonfiler' and  taxfilerstatus='Single') and (maritalstatus='Married-A F spouse present' or maritalstatus='Married-civilian spouse present')group by taxfilerstatus,weeksworked;
+//finding the average income of those who satisfy the above condition
+select round(avg(income),2),taxfilerstatus,weeksworked from censusdata where (taxfilerstatus!='Nonfiler' and  taxfilerstatus='Single') and (maritalstatus='Married-A F spouse present' or maritalstatus='Married-civilian spouse present')group by taxfilerstatus,weeksworked;
+//finding out how many weeks are non filers working
+select count(taxfilerstatus),taxfilerstatus,weeksworked from censusdata where taxfilerstatus='Nonfiler' group by taxfilerstatus,weeksworked;
+

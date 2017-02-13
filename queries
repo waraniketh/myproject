@@ -1,0 +1,17 @@
+report to govt about various situations to implement various schemes 
+1.)check which age group is educated the most caluculate the average income of those and see if their income is highest or average income of people who are least educated  find the differnce %?(eliminating childern)
+2.)find out the person with most weeks working chehck if his income is highest if his income is not highest then take average of top 5 income people and then find the difference  is least print his education status and then find the diff of average of top 5 income people  and do it for both native and non immigrants?
+4.)count the no.of orphans see which age group has more orphans eliminating the age group greater than 45 find out if they are working or not if working then find out average income and also find the average income of non-working?check their education status?
+5.)find out natives who are taxfilers and find out if they are married or not if married are they filing tax for both or separately see which persons pay more tax married or not married(find average)?check whether the persons who are more eductaed are taxfilers or persons who are uneductaed that is least educated and they should be working ?then see tax filers work more or non taxfilers?
+6.)see if there are any orphans (consider both genders separately) with low income and marreid and caluculate how many persons are of age group between 18-35 yrs?caluculate what percent of the total population are orphans? 
+7.)see if the average income of divorced is greater than the people with married (take educated and uneducated class separately)?then separate them based on parents separately then?caluculate the difference of their income from top 5 income average?
+8.)caluculate the male percentage and female percentage firstly based on age group secondly based on eductaion then percentage on weeksworked for litracy rate?(take immigrants and non-immigrants separately)?
+9.)which gender earns the most male or female group it by age?what is their educationstatus and how many weeks are they working?then find the difference of their average income?then again find how which gender tops it group wise then find which age group difference is higher and if difference is high does it belong to gender that tops or other then what is its percent on the income difference obtained?
+10)caluculate what percent of total population are  old people and see if their ioncome is well enough to survive if they have spouse see people of thst category are earning more?
+
+firstquery steps :
+1)which age group is educated the most?
+ans:key age and i will select it only if it satisfies two conditions use number of reducers if age is between 20 to 40 one reducer count
+2)average income of that group(20 to 40) education qualification key ,age,avgincome 3 conditions  
+
+

@@ -1,0 +1,20 @@
+use myproject5;
+//counting number of orphans from given data
+select count(*),parents from censusdata where parents='Not in universe' and age between 0 and 45 group by parents;//2,50,341
+//according to gender how orphans are there which gender has more orphans
+select count(*),gender from censusdata where parents='Not in universe' where age between 0 to 45 group by gender;
+//checking education status of people who are non working
+select education,parents from censusdata where parents='Not in universe' and age between 0 and 45;
+//finding out orphans with highest education qualification
+select count(*),education,parents from censusdata where (parents='Not in universe') and (age between 0 and 45) and (education='Doctorate degree(PhD EdD)' or education='Masters degree(MA MS MEng MEd MSW MBA)') group by education,parents;
+//finding out how many orphans are working and how many or not and finding their ratio.
+create view forfindingorphans as select * from censusdata where parents='Not in universe' and age between 0 and 45;
+select count(*) from forfindingorphans where weeksworked>0 and age>14;//209186
+select count(*),weeksworked from forfindingorphans where weeksworked=0 and age>14 group by weeksworked;//40015
+//now according to gender
+select count(*),gender from forfindingorphans where weeksworked>0 and age>14 group by gender; 
+select count(*),gender from forfindingorphans where weeksworked=0 and age>14 group by gender; 
+//now finding average income
+select round(avg(income),2) as averageincomeofworking from forfindingorphans where weeksworked>0 and age>14;
+select round(avg(income),2) as averageincomeofnonworking from forfindingorphans where weeksworked=0 and age>14;
+
